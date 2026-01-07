@@ -1,9 +1,13 @@
 'use client'
 import  { useEffect, useState } from 'react'
 import Question from '../Question'
-import { Brain, Crown, Rocket, Sparkles, Target, Timer, Trophy } from 'lucide-react'
+import { ArrowLeft, Brain, Crown, Rocket, Sparkles, Target, Timer, Trophy } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 const Quiz = () => {
+
+  const router=useRouter()
+
     const[currentQuestion, SetCurrentQuestion]=useState(0)
     const[selectedAnswer,setSelectAnswer]=useState(null)
     const [result,setResult]=useState(false)
@@ -68,7 +72,15 @@ setQuizStarted(true)
 if(!quizStarted){
   return (
     <div className='min-h-screen bg-gray-200 p-8 flex items-center justify-center relative  overflow-hidden'>
+           
    <div className="max-w-4xl w-full relative z-10">
+        <button
+                onClick={() => router.push('/')}
+                className="flex items-center gap-2 text-gray-600 hover:text-black"
+              >
+                <ArrowLeft className="w-5 h-5" />
+                Back to Projects
+              </button>
     <div className='text-center mb-16'>
 <div className='inline-flex items-center gap-3 bg-white/20 backdrop-blur-lg px-6 rounded-full mb-8'>
 <Sparkles className="w-5 h-5 text-yellow-300"/>
@@ -218,6 +230,7 @@ else if (percentage >= 60) {
 return (
     <div className="min-h-screen bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 p-6 relative overflow-hidden">
       {/* Animated background */}
+
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-pulse"></div>
         <div className="absolute top-40 right-20 w-72 h-72 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-pulse delay-700"></div>
